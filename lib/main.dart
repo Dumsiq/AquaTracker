@@ -21,7 +21,7 @@ void main() async {
     ),
   );
 
-  runApp(const AquaTrackerApp());
+  runApp(AquaTrackerApp());
 }
 
 class AquaTrackerApp extends StatelessWidget {
@@ -38,8 +38,7 @@ class AquaTrackerApp extends StatelessWidget {
           seedColor: const Color(0xFF1E88E5),
           brightness: Brightness.light,
         ),
-        // Remove explicit fontFamily to use system default
-        // fontFamily: 'Roboto', // REMOVED
+        fontFamily: 'Roboto',
         // Optimize theme for performance
         visualDensity: VisualDensity.adaptivePlatformDensity,
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -216,7 +215,6 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
             style: const TextStyle(
               fontWeight: FontWeight.bold, 
               color: Color(0xFF1E88E5),
-              // Remove explicit fontFamily - use system default
             ),
           ),
           ResponsiveText(
@@ -224,10 +222,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
               ? 'Monitore e economize água' 
               : 'Junte-se à comunidade sustentável',
             baseFontSize: 16,
-            style: TextStyle(
-              color: Colors.grey[600],
-              // Remove explicit fontFamily - use system default
-            ),
+            style: TextStyle(color: Colors.grey[600]),
           ),
           const SizedBox(height: 30),
           
@@ -310,7 +305,6 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
-                      // Remove explicit fontFamily - use system default
                     ),
                   ),
             ),
@@ -330,10 +324,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
                 ? 'Não tem conta? Cadastre-se' 
                 : 'Já tem conta? Faça login',
               baseFontSize: 14,
-              style: const TextStyle(
-                color: Color(0xFF1E88E5),
-                // Remove explicit fontFamily - use system default
-              ),
+              style: const TextStyle(color: Color(0xFF1E88E5)),
             ),
           ),
         ],
@@ -732,11 +723,7 @@ class _DashboardScreenState extends State<DashboardScreen>
           title: ResponsiveText(
             'Dashboard',
             baseFontSize: 20,
-            style: const TextStyle(
-              color: Colors.white, 
-              fontWeight: FontWeight.w600,
-              // Remove explicit fontFamily - use system default
-            ),
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
           ),
           backgroundColor: const Color(0xFF1E88E5),
           elevation: 0,
@@ -781,17 +768,13 @@ class _DashboardScreenState extends State<DashboardScreen>
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
-                        // Remove explicit fontFamily - use system default
                       ),
                     ),
                     const SizedBox(height: 5),
                     ResponsiveText(
                       'Vamos economizar água juntos 💧',
                       baseFontSize: 16,
-                      style: const TextStyle(
-                        color: Colors.white70,
-                        // Remove explicit fontFamily - use system default
-                      ),
+                      style: const TextStyle(color: Colors.white70),
                     ),
                     const SizedBox(height: 30),
                     
@@ -821,16 +804,12 @@ class _DashboardScreenState extends State<DashboardScreen>
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
-                                  // Remove explicit fontFamily - use system default
                                 ),
                               ),
                               ResponsiveText(
                                 'Consumo Total Registrado',
                                 baseFontSize: 16,
-                                style: const TextStyle(
-                                  color: Colors.white70,
-                                  // Remove explicit fontFamily - use system default
-                                ),
+                                style: const TextStyle(color: Colors.white70),
                               ),
                             ],
                           ),
@@ -852,10 +831,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                                 ResponsiveText(
                                   'Uso por Categoria',
                                   baseFontSize: 18,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    // Remove explicit fontFamily - use system default
-                                  ),
+                                  style: const TextStyle(fontWeight: FontWeight.bold),
                                 ),
                               ],
                             ),
@@ -869,15 +845,11 @@ class _DashboardScreenState extends State<DashboardScreen>
                                     ResponsiveText(
                                       entry.key,
                                       baseFontSize: 14,
-                                      // Remove explicit fontFamily - use system default
                                     ),
                                     ResponsiveText(
                                       '${entry.value.toStringAsFixed(1)} L',
                                       baseFontSize: 14,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        // Remove explicit fontFamily - use system default
-                                      ),
+                                      style: const TextStyle(fontWeight: FontWeight.w600),
                                     ),
                                   ],
                                 ),
@@ -901,10 +873,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                               ResponsiveText(
                                 'Dica do Dia',
                                 baseFontSize: 18,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  // Remove explicit fontFamily - use system default
-                                ),
+                                style: const TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -912,7 +881,6 @@ class _DashboardScreenState extends State<DashboardScreen>
                           ResponsiveText(
                             'Feche a torneira enquanto escova os dentes. Você pode economizar até 12 litros de água por escovação!',
                             baseFontSize: 14,
-                            // Remove explicit fontFamily - use system default
                           ),
                         ],
                       ),
@@ -999,11 +967,7 @@ class _WaterRecordsScreenState extends State<WaterRecordsScreen>
           title: ResponsiveText(
             'Registros de Água',
             baseFontSize: 20,
-            style: const TextStyle(
-              color: Colors.white, 
-              fontWeight: FontWeight.w600,
-              // Remove explicit fontFamily - use system default
-            ),
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
           ),
           backgroundColor: const Color(0xFF1E88E5),
           elevation: 0,
@@ -1021,11 +985,7 @@ class _WaterRecordsScreenState extends State<WaterRecordsScreen>
         title: ResponsiveText(
           'Registros de Água',
           baseFontSize: 20,
-          style: const TextStyle(
-            color: Colors.white, 
-            fontWeight: FontWeight.w600,
-            // Remove explicit fontFamily - use system default
-          ),
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
         ),
         backgroundColor: const Color(0xFF1E88E5),
         elevation: 0,
@@ -1044,19 +1004,13 @@ class _WaterRecordsScreenState extends State<WaterRecordsScreen>
                   ResponsiveText(
                     'Nenhum registro encontrado',
                     baseFontSize: 18,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      // Remove explicit fontFamily - use system default
-                    ),
+                    style: const TextStyle(color: Colors.grey),
                   ),
                   const SizedBox(height: 10),
                   ResponsiveText(
                     'Toque no + para adicionar seu primeiro registro',
                     baseFontSize: 14,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      // Remove explicit fontFamily - use system default
-                    ),
+                    style: const TextStyle(color: Colors.grey),
                   ),
                 ],
               ),
@@ -1074,17 +1028,14 @@ class _WaterRecordsScreenState extends State<WaterRecordsScreen>
                       vertical: 4,
                     ),
                     child: ListTile(
-                      leading: const CircleAvatar(
-                        backgroundColor: Color(0xFF1E88E5),
-                        child: Icon(Icons.water_drop, color: Colors.white),
+                      leading: CircleAvatar(
+                        backgroundColor: const Color(0xFF1E88E5),
+                        child: const Icon(Icons.water_drop, color: Colors.white),
                       ),
                       title: ResponsiveText(
                         '${record.litersUsed} L - ${record.category}',
                         baseFontSize: 16,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                          // Remove explicit fontFamily - use system default
-                        ),
+                        style: const TextStyle(fontWeight: FontWeight.w600),
                       ),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1092,16 +1043,12 @@ class _WaterRecordsScreenState extends State<WaterRecordsScreen>
                           ResponsiveText(
                             record.description,
                             baseFontSize: 14,
-                            // Remove explicit fontFamily - use system default
                           ),
                           const SizedBox(height: 5),
                           ResponsiveText(
                             '${record.date.day}/${record.date.month}/${record.date.year}',
                             baseFontSize: 12,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              // Remove explicit fontFamily - use system default
-                            ),
+                            style: const TextStyle(color: Colors.grey),
                           ),
                         ],
                       ),
@@ -1172,11 +1119,7 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
         title: ResponsiveText(
           'Perfil',
           baseFontSize: 20,
-          style: const TextStyle(
-            color: Colors.white, 
-            fontWeight: FontWeight.w600,
-            // Remove explicit fontFamily - use system default
-          ),
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
         ),
         backgroundColor: const Color(0xFF1E88E5),
         elevation: 0,
@@ -1201,18 +1144,12 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
             ResponsiveText(
               user?.name ?? 'Usuário',
               baseFontSize: 24,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                // Remove explicit fontFamily - use system default
-              ),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             ResponsiveText(
               user?.email ?? '',
               baseFontSize: 16,
-              style: const TextStyle(
-                color: Colors.grey,
-                // Remove explicit fontFamily - use system default
-              ),
+              style: const TextStyle(color: Colors.grey),
             ),
             const SizedBox(height: 40),
             SizedBox(
@@ -1261,11 +1198,7 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                 label: ResponsiveText(
                   'Sair da Conta',
                   baseFontSize: 16,
-                  style: const TextStyle(
-                    color: Colors.white, 
-                    fontWeight: FontWeight.w600,
-                    // Remove explicit fontFamily - use system default
-                  ),
+                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
                 ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
