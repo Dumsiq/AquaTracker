@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
 import 'database.dart';
-import '/utils/performance_utils.dart';
-import '/widgets/responsive_layout.dart';
-import '/widgets/optimized_widgets.dart';
-import '/services/optimized_database_service.dart';
+import 'utils/performance_utils.dart';
+import 'widgets/responsive_layout.dart';
+import 'widgets/optimized_widgets.dart';
+import 'services/optimized_database_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +25,8 @@ void main() async {
 }
 
 class AquaTrackerApp extends StatelessWidget {
+  const AquaTrackerApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,7 +43,7 @@ class AquaTrackerApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
-      home: AuthScreen(),
+      home: const AuthScreen(),
       debugShowCheckedModeBanner: false,
       // Performance optimizations
       builder: (context, child) {
@@ -61,6 +63,8 @@ class AquaTrackerApp extends StatelessWidget {
 // ===========================================
 
 class AuthScreen extends StatefulWidget {
+  const AuthScreen({Key? key}) : super(key: key);
+
   @override
   _AuthScreenState createState() => _AuthScreenState();
 }
@@ -346,7 +350,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
             Navigator.pushReplacement(
               context,
               PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) => HomeScreen(),
+                pageBuilder: (context, animation, secondaryAnimation) => const HomeScreen(),
                 transitionsBuilder: (context, animation, secondaryAnimation, child) {
                   return FadeTransition(opacity: animation, child: child);
                 },
@@ -428,6 +432,8 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
 // ===========================================
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -471,9 +477,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           });
         },
         children: [
-          _dashboardScreen ??= DashboardScreen(),
+          _dashboardScreen ??= const DashboardScreen(),
           _recordsScreen ??= WaterRecordsScreen(),
-          _profileScreen ??= ProfileScreen(),
+          _profileScreen ??= const ProfileScreen(),
         ],
       ),
       bottomNavigationBar: Container(
@@ -529,8 +535,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   Future<void> _showAddRecordDialog() async {
-    final _litersController = TextEditingController();
-    final _descriptionController = TextEditingController();
+    final litersController = TextEditingController();
+    final descriptionController = TextEditingController();
     String selectedCategory = 'Banho';
     final categories = ['Banho', 'Cozinha', 'Limpeza', 'Jardim', 'Outros'];
     
@@ -549,7 +555,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     OptimizedTextField(
-                      controller: _litersController,
+                      controller: litersController,
                       labelText: 'Litros utilizados',
                       keyboardType: const TextInputType.numberWithOptions(decimal: true),
                     ),
@@ -576,7 +582,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     ),
                     const SizedBox(height: 15),
                     OptimizedTextField(
-                      controller: _descriptionController,
+                      controller: descriptionController,
                       labelText: 'Descrição',
                       maxLines: 2,
                     ),
@@ -590,16 +596,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    if (_litersController.text.isNotEmpty && 
-                        _descriptionController.text.isNotEmpty) {
+                    if (litersController.text.isNotEmpty && 
+                        descriptionController.text.isNotEmpty) {
                       
                       final record = WaterRecord(
                         id: DateTime.now().millisecondsSinceEpoch.toString(),
                         userId: DataService.currentUser!.id,
-                        litersUsed: double.parse(_litersController.text),
+                        litersUsed: double.parse(litersController.text),
                         category: selectedCategory,
                         date: DateTime.now(),
-                        description: _descriptionController.text,
+                        description: descriptionController.text,
                       );
                       
                       bool success = await OptimizedDatabaseService.addWaterRecordWithCacheUpdate(record);
@@ -656,6 +662,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 // ===========================================
 
 class DashboardScreen extends StatefulWidget {
+  const DashboardScreen({Key? key}) : super(key: key);
+
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
 }
@@ -895,6 +903,8 @@ class _DashboardScreenState extends State<DashboardScreen>
 // ===========================================
 
 class WaterRecordsScreen extends StatefulWidget {
+  const WaterRecordsScreen({Key? key}) : super(key: key);
+
   @override
   _WaterRecordsScreenState createState() => _WaterRecordsScreenState();
 
@@ -1088,6 +1098,8 @@ class _WaterRecordsScreenState extends State<WaterRecordsScreen>
 // ===========================================
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
+
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -1171,7 +1183,7 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
                       Navigator.pushAndRemoveUntil(
                         context,
                         PageRouteBuilder(
-                          pageBuilder: (context, animation, secondaryAnimation) => AuthScreen(),
+                          pageBuilder: (context, animation, secondaryAnimation) => const AuthScreen(),
                           transitionsBuilder: (context, animation, secondaryAnimation, child) {
                             return FadeTransition(opacity: animation, child: child);
                           },
@@ -1203,119 +1215,3 @@ class _ProfileScreenState extends State<ProfileScreen> with AutomaticKeepAliveCl
     );
   }
 }
-
-  @override
-  bool get wantKeepAlive => true;
-
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    
-    final user = DataService.currentUser;
-    
-    return Scaffold(
-      appBar: AppBar(
-        title: ResponsiveText(
-          'Perfil',
-          baseFontSize: 20,
-          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
-        ),
-        backgroundColor: const Color(0xFF1E88E5),
-        elevation: 0,
-      ),
-      body: ResponsiveContainer(
-        child: Column(
-          children: [
-            const SizedBox(height: 40),
-            
-            // Avatar
-            Hero(
-              tag: 'profile_avatar',
-              child: CircleAvatar(
-                radius: ResponsiveBreakpoints.isMobile(context) ? 50 : 60,
-                backgroundColor: const Color(0xFF1E88E5),
-                child: Icon(
-                  Icons.person,
-                  size: ResponsiveBreakpoints.isMobile(context) ? 50 : 60,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            
-            ResponsiveText(
-              user?.name ?? 'Usuário',
-              baseFontSize: 24,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            ResponsiveText(
-              user?.email ?? '',
-              baseFontSize: 16,
-              style: const TextStyle(color: Colors.grey),
-            ),
-            const SizedBox(height: 40),
-            
-            // Logout button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                onPressed: () async {
-                  // Show confirmation dialog
-                  final shouldLogout = await showDialog<bool>(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: const Text('Confirmar Logout'),
-                      content: const Text('Tem certeza que deseja sair da sua conta?'),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Navigator.of(context).pop(false),
-                          child: const Text('Cancelar'),
-                        ),
-                        ElevatedButton(
-                          onPressed: () => Navigator.of(context).pop(true),
-                          style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                          child: const Text('Sair', style: TextStyle(color: Colors.white)),
-                        ),
-                      ],
-                    ),
-                  );
-
-                  if (shouldLogout == true) {
-                    await DataService.logout();
-                    OptimizedDatabaseService.clearAllCaches();
-                    
-                    if (context.mounted) {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation, secondaryAnimation) => AuthScreen(),
-                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                            return FadeTransition(opacity: animation, child: child);
-                          },
-                          transitionDuration: const Duration(milliseconds: 300),
-                        ),
-                        (route) => false,
-                      );
-                    }
-                  }
-                },
-                icon: const Icon(Icons.logout, color: Colors.white),
-                label: ResponsiveText(
-                  'Sair da Conta',
-                  baseFontSize: 16,
-                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
